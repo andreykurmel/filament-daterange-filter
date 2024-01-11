@@ -1,6 +1,6 @@
 <?php
 
-namespace Malzariey\FilamentDaterangepickerFilter;
+namespace Andreykurmel\FilamentDaterangepickerFilter;
 
 use Composer\InstalledVersions;
 use Filament\PluginServiceProvider;
@@ -33,7 +33,7 @@ class FilamentDaterangepickerFilterServiceProvider extends PluginServiceProvider
 
     public function configurePackage(Package $package): void
     {
-        static::$version = InstalledVersions::getVersion('malzariey/filament-daterangepicker-filter');
+        static::$version = InstalledVersions::getVersion('andreykurmel/filament-daterangepicker-filter');
 
         $this->beforeCoreScripts = [
             'filament-daterangepicker-filter'.static::$version => __DIR__ . '/../dist/filament-daterangepicker.js',

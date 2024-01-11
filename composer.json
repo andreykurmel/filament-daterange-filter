@@ -1,17 +1,17 @@
 {
-    "name": "malzariey/filament-daterangepicker-filter",
+    "name": "andreykurmel/filament-daterangepicker-filter",
     "description": "This package uses daterangepciker library to filter date by a range or predefined date ranges (Today , Yesterday ...etc)",
     "keywords": [
-        "Malzariey",
+        "Andreykurmel",
         "laravel",
         "filament-daterangepicker-filter"
     ],
-    "homepage": "https://github.com/malzariey/filament-daterangepicker-filter",
+    "homepage": "https://github.com/andreykurmel/filament-daterangepicker-filter",
     "license": "MIT",
     "authors": [
         {
             "name": "Majid Al-Zariey",
-            "email": "malzariey@gmail.com",
+            "email": "andreykurmel@gmail.com",
             "role": "Developer"
         }
     ],
@@ -33,13 +33,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Malzariey\\FilamentDaterangepickerFilter\\": "src",
-            "Malzariey\\FilamentDaterangepickerFilter\\Database\\Factories\\": "database/factories"
+            "Andreykurmel\\FilamentDaterangepickerFilter\\": "src",
+            "Andreykurmel\\FilamentDaterangepickerFilter\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Malzariey\\FilamentDaterangepickerFilter\\Tests\\": "tests"
+            "Andreykurmel\\FilamentDaterangepickerFilter\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -59,10 +59,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Malzariey\\FilamentDaterangepickerFilter\\FilamentDaterangepickerFilterServiceProvider"
+                "Andreykurmel\\FilamentDaterangepickerFilter\\FilamentDaterangepickerFilterServiceProvider"
             ],
             "aliases": {
-                "FilamentDaterangepickerFilter": "Malzariey\\FilamentDaterangepickerFilter\\Facades\\FilamentDaterangepickerFilter"
+                "FilamentDaterangepickerFilter": "Andreykurmel\\FilamentDaterangepickerFilter\\Facades\\FilamentDaterangepickerFilter"
             }
         }
     },

@@ -1,13 +1,13 @@
 <?php
 
-namespace Malzariey\FilamentDaterangepickerFilter\Filters;
+namespace Andreykurmel\FilamentDaterangepickerFilter\Filters;
 
 use Carbon\CarbonInterface;
 use Closure;
 use Filament\Tables\Filters\BaseFilter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
-use Malzariey\FilamentDaterangepickerFilter\Fields\DateRangePicker;
+use Andreykurmel\FilamentDaterangepickerFilter\Fields\DateRangePicker;
 
 class DateRangeFilter extends BaseFilter
 {
@@ -48,6 +48,8 @@ class DateRangeFilter extends BaseFilter
     protected int|Closure|null $minutesStep = null;
 
     protected int|Closure|null $secondsStep = null;
+
+    protected array|Closure $ranges = [];
 
     public function resetFirstDayOfWeek(): static
     {
@@ -139,6 +141,7 @@ class DateRangeFilter extends BaseFilter
                 ->maxDate($this->maxDate)
                 ->displayFormat($this->displayFormat)
                 ->format($this->format)
+                ->ranges($this->ranges)
         ];
     }
 
@@ -292,5 +295,11 @@ class DateRangeFilter extends BaseFilter
         return $this;
     }
 
+    public function ranges(array|Closure $ranges): static
+    {
+        $this->ranges = $ranges;
+
+        return $this;
+    }
 
 }

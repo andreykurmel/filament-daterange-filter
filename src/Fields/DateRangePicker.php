@@ -1,6 +1,6 @@
 <?php
 
-namespace Malzariey\FilamentDaterangepickerFilter\Fields;
+namespace Andreykurmel\FilamentDaterangepickerFilter\Fields;
 
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
@@ -34,6 +34,45 @@ class DateRangePicker extends Forms\Components\Field
     protected CarbonInterface|string|Closure|null $endDate = null;
     protected string|Closure|null $timezone = null;
     protected array|Closure $disabledDates = [];
+    protected array|Closure $ranges = [];
+
+    public static function make(string $name) : static
+    {
+        $static = parent::make($name);
+
+        $static->ranges([
+            __('filament-daterangepicker-filter::message.today') => [now(), now()],
+            __('filament-daterangepicker-filter::message.yesterday') => [now()->subDay(), now()->subDay()],
+            __('filament-daterangepicker-filter::message.last_7_days') => [now()->subDays(6), now()],
+            __('filament-daterangepicker-filter::message.last_30_days') => [now()->subDays(29), now()],
+            __('filament-daterangepicker-filter::message.this_month') => [now()->startOfMonth(), now()->endOfMonth()],
+            __('filament-daterangepicker-filter::message.last_month') => [now()->subMonth()->startOfMonth(), now()->subMonth()->endOfMonth()],
+            __('filament-daterangepicker-filter::message.this_year') => [now()->startOfYear(), now()->endOfYear()],
+            __('filament-daterangepicker-filter::message.last_year') => [now()->subYear()->startOfYear(), now()->subYear()->endOfYear()],
+        ]);
+
+        return $static;
+    }
+
+    public function ranges(array|Closure $ranges) : static
+    {
+        $this->ranges = $ranges;
+
+        return $this;
+    }
+
+    public function getRanges() : ?array
+    {
+        $ranges = $this->evaluate($this->ranges);
+
+        foreach ($ranges as $key => $dates) {
+            $ranges[$key] = array_map(function ($date) {
+                return $date instanceof \Carbon\Carbon ? $date->toDateString() : $date;
+            }, $dates);
+        }
+
+        return $ranges;
+    }
 
     //Javascript Format
     public function displayFormat(string|Closure|null $format): static
